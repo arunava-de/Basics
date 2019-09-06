@@ -1,3 +1,14 @@
+G = {}
+n,m = list(map(int,input().split()))
+
+for i in range(n):
+    G[i] = set()
+    
+for i in range(m):
+    u,v = list(map(int,input().split()))
+    G[u] = G[u] | {v}
+    G[v] = G[v] | {u}
+    
 def BFS(u):
     visited = False*len(G)
     Q = [u]
