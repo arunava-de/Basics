@@ -1,0 +1,35 @@
+G = {}
+N, M = list(map(int,input().split()))
+
+for i in range(N):
+    G[i] = set()
+    
+for i in range(M):
+    u, v, w = list(map(int,input().split()))
+    G[u] = G[u] | {(v,w)}
+    G[v] = G[v] | {(u,w)}
+
+root = 0
+
+
+def Dijkstra(root, G, N):
+    sptSet = set()
+    vertices = set(range(N))
+    distances = [float('inf')]*N
+    distances[root] = 0
+    
+    for _ in range(N):
+        mindist = 10**7
+        for v in vertices - sptSet:
+            if distances[v]<mindist:
+                min_v = v
+                mindist = distances[v]
+        
+        sptSet.add(min_v)
+        
+        for y in G[min_v]:
+            w, wt = y
+            if w not in sptSet and distances[w]>distances[min_v]+wt:
+                distances[w] = distances[min_v] + wt
+    
+    return distances
