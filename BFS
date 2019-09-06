@@ -1,0 +1,14 @@
+def BFS(u):
+    visited = False*len(G)
+    Q = [u]
+    visited[u] = True
+    while Q:
+        v = Q.pop(0)
+        
+        print(v)
+        
+        for w in G[v]:
+            if visited[w]==False:
+                Q.append(w)
+                visited[w] = True
+    
