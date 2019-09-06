@@ -1,0 +1,25 @@
+G = {}
+n,m = list(map(int,input().split()))
+
+for i in range(n):
+    G[i] = set()
+    
+for i in range(m):
+    u,v = list(map(int,input().split()))
+    G[u] = G[u] | {v}
+    G[v] = G[v] | {u}
+    
+def DFS(u):
+    visited = [False]*len(G)
+    S = [u]
+    visited[u] = True
+    
+    while S:
+        v = S.pop()
+        
+        print(v)
+        
+        for w in G[v]:
+            if visited[w]==False:
+                S.append(w)
+                visited[w] = True
