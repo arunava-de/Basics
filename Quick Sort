@@ -1,0 +1,20 @@
+def quicksort(arr, s, e):
+    if s<e:
+        corr = partition(arr, s, e) #Element at posn 'corr' is at the right position
+        quicksort(arr, s, corr-1)
+        quicksort(arr, corr+1, e)
+    
+
+def partition(arr, s, e):
+    pivot = arr[e]
+    i = s-1
+    j = s
+    for j in range(s,e):
+        if arr[j]<pivot:
+            i += 1
+            arr[j], arr[i] = arr[i], arr[j]
+    
+    arr[i+1], arr[e] = arr[e], arr[i+1]
+    
+    return i+1
+        
